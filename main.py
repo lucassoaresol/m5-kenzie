@@ -1,25 +1,41 @@
-def delta(a, b, c):
-    return pow(b, 2) - 4 * a * c
+def corresponding_parenthesis(string: str):
+    left = string.count('(')
+    rigth = string.count(')')
+    difference = left - rigth
+
+    if difference > 0:
+        return '(' * difference
+    elif difference < 0:
+        return ')' * abs(difference)
+
+    return ''
 
 
-def bhaskara(a, b, c):
-    resul_delta = delta(a, b, c)
+# Exemplo 1
+result = corresponding_parenthesis("()()")
+print(result)
 
-    if resul_delta < 0:
-        return 'Delta Negativo'
+# Exemplo 2
+result = corresponding_parenthesis("()))")
+print(result)
 
-    raiz_delta = pow(resul_delta, 0.5)
+# Exemplo 3
+result = corresponding_parenthesis(")))(((((")
+print(result)
 
-    x1 = (-b + raiz_delta)/(2*a)
-    x2 = (-b - raiz_delta)/(2*a)
 
-    return f'x1={round(x1,2)}, x2={round(x2,2)}'
+def remove_more_than_two_repetitions(string: str):
+    response = []
+    response.append(string[0])
+    response.append(string[1])
 
-print(bhaskara(7, 3, 4))
-# Delta Negativo
+    for index, char in enumerate(string[2:], 2):
+        if string[index - 1] != char or string[index - 2] != char:
+            response.append(char)
 
-print(bhaskara(1, 5, 2))
-# x1=-0.44, x2=-4.56
+    return "".join(response)
 
-print(bhaskara(3, 10, 2))
-# x1=-0.21, x2=-3.12
+
+text = "Ollloco meuuuu, taaa peegaando fogoo biiiiichooo"
+text = remove_more_than_two_repetitions(text)
+print(text)
